@@ -14,6 +14,7 @@ export default function App() {
   );
 }
 
+// YOUR CONST VARIABLE NAME CAN BE ANYTHING AND THAT GOES FOR THE OBJECT CHILD
 const styles = StyleSheet.create({
   screenWrap: {
     padding: 50
