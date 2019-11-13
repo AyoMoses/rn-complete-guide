@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Button, TextInput, StyleSheet } from "react-native";
+import { View, Button, TextInput, StyleSheet, Modal } from "react-native";
 
 const GoalInput = props => {
   const [enteredGoal, setEnteredGoal] = useState("");
@@ -8,21 +8,23 @@ const GoalInput = props => {
   };
 
   return (
-    <View style={styles.inputContainer}>
-      <TextInput
-        placeholder="Course Goal"
-        style={styles.formInput}
-        onChangeText={goalInputHandler}
-        // WE PASS THE USER KEYPRESS INTO THE INPUTTEXT BY BINDING DATA ONE WAY
-        value={enteredGoal}
-      />
-      {/* WE THEN BIND THE GOALINPUT HANDLER */}
-      <Button
-        title="Click to Add"
-        style={{}}
-        onPress={props.onAddGoal.bind(this, enteredGoal)}
-      />
-    </View>
+    <Modal visible={false}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          placeholder="Course Goal"
+          style={styles.formInput}
+          onChangeText={goalInputHandler}
+          // WE PASS THE USER KEYPRESS INTO THE INPUTTEXT BY BINDING DATA ONE WAY
+          value={enteredGoal}
+        />
+        {/* WE THEN BIND THE GOALINPUT HANDLER */}
+        <Button
+          title="Click to Add"
+          style={{}}
+          onPress={props.onAddGoal.bind(this, enteredGoal)}
+        />
+      </View>
+    </Modal>
   );
 };
 
