@@ -7,8 +7,13 @@ const GoalInput = props => {
     setEnteredGoal(enteredText);
   };
 
+  const addGoalHandler = () => {
+    props.onAddGoal(enteredGoal);
+    setEnteredGoal(""); //we clear the entered goal and reset the field
+  };
+
   return (
-    <Modal visible={false}>
+    <Modal visible={props.visible} animationType="slide">
       <View style={styles.inputContainer}>
         <TextInput
           placeholder="Course Goal"
@@ -17,12 +22,18 @@ const GoalInput = props => {
           // WE PASS THE USER KEYPRESS INTO THE INPUTTEXT BY BINDING DATA ONE WAY
           value={enteredGoal}
         />
-        {/* WE THEN BIND THE GOALINPUT HANDLER */}
-        <Button
-          title="Click to Add"
-          style={{}}
-          onPress={props.onAddGoal.bind(this, enteredGoal)}
-        />
+
+        <View style={styles.inputButtons}>
+          {/* A CACEL BUTTON TO BE BINDED IN THE VISIBLE STATE IN APP.JS */}
+          <View style={styles.button}>
+            <Button title="CANCEL" color="red" onPress={props.onCancel} />
+          </View>
+
+          {/* WE THEN BIND THE GOALINPUT HANDLER */}
+          <View style={styles.button}>
+            <Button title="Add" style={{}} onPress={addGoalHandler} />
+          </View>
+        </View>
       </View>
     </Modal>
   );
@@ -30,17 +41,27 @@ const GoalInput = props => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+    flex: 1,
+    justifyContent: "center",
     alignItems: "center"
   },
 
   formInput: {
-    width: 220,
+    width: 260,
     borderColor: "black",
     borderWidth: 1,
     padding: 7,
-    marginRight: 5
+    marginBottom: 10
+  },
+
+  inputButtons: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "50%"
+  },
+
+  button: {
+    width: "40%"
   }
 });
 
